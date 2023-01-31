@@ -15,12 +15,14 @@ public class ConsumirCalculadoraService implements ConsumirCalculadoraInterfazSe
     @Autowired
     private RestTemplate clientRest;
 
-    @Value("${ENDPOINT_CALCULADORA}")
-    private String ENDPOINT_CALCULADORA;
+   /* @Value("${ENDPOINT_CALCULADORA}")
+    private String ENDPOINT_CALCULADORA;*/
+
+    String path = System.getenv("ENDPOINT_CALCULADORA");
 
     @Override
     public int consumirSuma(Double iva, Double valor){
-        String url = ENDPOINT_CALCULADORA+ "/calculadora/suma?numero1={valor}&numero2={iva}";
+        String url = path + "/calculadora/suma?numero1={valor}&numero2={iva}";
         Map<String, Integer> params = new HashMap<>();
         params.put("valor", valor.intValue());
         params.put("iva", iva.intValue());
