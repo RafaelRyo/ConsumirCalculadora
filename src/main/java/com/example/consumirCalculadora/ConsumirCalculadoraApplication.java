@@ -20,6 +20,12 @@ public class ConsumirCalculadoraApplication {
 	@Autowired
 	private ConsumirCalculadoraService consumirCalculadoraService;
 
+	@RequestMapping("")
+	public String iniciar(){
+		String resultado = "Hola mundo";
+		return resultado;
+	}
+
 	@RequestMapping("/consumirSuma")
 	public int valor(@RequestParam("valor") Double valor){
 		//http://localhost:8080/calculadora/consumirSuma?numero1=4&numero2=5
