@@ -2,6 +2,7 @@ package com.example.consumirCalculadora.service;
 
 import com.example.consumirCalculadora.interfaz.ConsumirCalculadoraInterfazService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,9 +15,12 @@ public class ConsumirCalculadoraService implements ConsumirCalculadoraInterfazSe
     @Autowired
     private RestTemplate clientRest;
 
+    @Value("${ENDPOINT_CALCULADORA}")
+    private String ENDPOINT_CALCULADORA;
+
     @Override
     public int consumirSuma(Double iva, Double valor){
-        String url = "http://localhost:8080/calculadora/suma?numero1={valor}&numero2={iva}";
+        String url = ENDPOINT_CALCULADORA+ "/calculadora/suma?numero1={valor}&numero2={iva}";
         Map<String, Integer> params = new HashMap<>();
         params.put("valor", valor.intValue());
         params.put("iva", iva.intValue());
